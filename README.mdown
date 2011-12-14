@@ -1,0 +1,178 @@
+# jQuery UI Datepicker for Rails 3.x
+
+This gem adds support for jQuery UI Date and DateTime picker for Rails 3.x form builders, including:
+
+* Formtastic 2.x
+* SimpleForm
+
+Feel free to provide patches/extensions to support other form builders.
+
+## Install
+
+Insert into Gemfile:
+
+`gem 'ui_datepicker-rails3'`
+
+Activate it like this:
+
+`UiDatePickerRails3.activate :simple_form`
+
+This can be done fx from inside an initializer. You can pass either :simple_form, :formtastic or :active_admin to the `#activate` method.
+
+## jQuery UI Configuration
+
+For basic Rails form builder support, please see ["jquery_datepicker"](https://github.com/albertopq/jquery_datepicker)
+
+In Gemfile, insert:
+
+`gem 'jquery-rails'`
+
+Then install jquery with UI, by executing the following command from console:
+
+`rails generate jquery:install --ui`
+
+In Rails 3.1 when using the asset pipeline, this generator is deprecated, so you’ll need to add a line to your app/assets/javascripts/application.js:
+
+//= require jquery-ui
+
+### Formtastic
+
+This gem requires Formtastic 2.0. For a version that supports Formtastic < 2.0, see [formtastic_datepicker]:(https://github.com/kristianmandrup/formtastic_datepicker)
+
+### ActiveAdmin
+
+The ActiveAdmin extension should work with ActiveAdmin _0.3.4_ (where Formtastic >= 2.0) - note: as of Nov. 25/2011, such a version was found in the `active_admin/gregbell` _master__ branch. ActiveAdmin _0.3.5_ and above should likely fulfill this requirement ;)
+
+## Formtastic (by justinfrench)
+
+The gem adds a couple of new form inputs to Formtastic that can be used like this: 
+
+```ruby 
+	<% semantic_form_for @person do |f| -%>
+		<% f.inputs do -%>
+		  <%= f.input :name %>
+		  <%= f.input :born, :as => :ui_date_picker %>
+		<% end -%>
+		<%= f.buttons %>
+	<% end -%>
+```
+
+The Formtastic Input class adds `class='ui-date-picker'` to the text input, which can the be matched by jQuery and converted to the date picker widget.
+
+```ruby 
+	<% semantic_form_for @person do |f| -%>
+		<% f.inputs do -%>
+		  <%= f.input :name %>
+		  <%= f.input :born, :as => :ui_date_time_picker %>
+		<% end -%>
+		<%= f.buttons %>
+	<% end -%>
+```
+
+The Formtastic Input class adds `class='ui-datetime-picker'` to the text input, which can the be matched by jQuery and converted to the date-time picker widget.
+
+## SimpleForm (by plataformatec)
+
+The gem adds a couple of new form inputs to SimpleForm that can be used like this: 
+
+```ruby 
+	<% simple_form_for @person do |f| -%>
+	  <%= f.input :name %>
+	  <%= f.input :born, :as => :date_picker %>
+	<% end -%>
+```
+
+The SimpleForm Input class adds `class='ui-date-picker'` to the text input, which can the be matched by jQuery and converted to the date picker widget.
+
+
+```ruby 
+	<% simple_form_for @person do |f| -%>
+    <%= f.input :name %>
+    <%= f.input :born, :as => :date_time_picker %>
+	<% end -%>
+```
+
+The SimpleForm Input class adds `class='ui-datetime-picker'` to the text input, which can the be matched by jQuery and converted to the date-time picker widget.
+
+## Configuration
+
+These configuration tips are only appropriate for a static datepicker, i.e one with a fixed set of options and a given language. Handling a more dynamic configuration is left as an exercise.
+
+When the gem has been installed the datepicker should be configured as follows
+
+Install the jquery-ui CSS. You can get a bundle to match your site from ThemeRoller. From your theme bundle, extract the CSS directory and place it somewhere under app/assets/stylesheets/.
+
+Activate datepicker on all matching input elements in one of your javascript (or coffeescript) files, fx `application.js`.
+
+```javascript
+$(document).ready(function(){
+  $('input.ui-date-picker').datepicker();
+  $('input.ui-datetime-picker').datepicker();
+});
+```
+
+```coffeescript
+$->
+  $('input.ui-date-picker').datepicker
+  $('input.ui-datetime-picker').datepicker
+```
+
+## Localization (optional)
+
+To add localization, you can additionally add localization options to the `datepicker()` call.
+
+Example: Using the swedish localization:
+
+```javascript
+$(document).ready(function(){
+  $('input.ui-date-picker').datepicker('option', 'sv' );
+});
+```
+
+```coffeescript
+$->
+  $('input.ui-date-picker').datepicker('option', 'sv')
+```
+
+
+For any other language exchange the local 'sv' to the appropriate (localized) country code.
+
+Copy the appropriate localization file from ["jQuery-UI i18n"](http://jquery-ui.googlecode.com/svn/trunk/ui/i18n/) to your js asset folder, fx at: `app/assets/javascripts/i18n/jquery.ui.datepicker-sv.js`
+
+Then make sure a reference to the locale file is added in the manifest file.
+
+`//= require 'i18n/jquery.ui.datepicker-sv.js'` to your js manifest file. 
+
+## Styling (optional)
+
+Style the datepicker by adding a `datepicker.css` file to your css assets.
+
+You can use the *Themeroller* (http://jqueryui.com/themeroller/) to define and download an appropriate css file and the pictures needed. Add the downloaded Themeroller css file to the css assets and add the Themeroller images to the image assets. Edit the datepicker css and change all image references by removing all the "images/" prefixes e.g from `url(images/ui-icons_222222_256x240.png)` to `url(ui-icons_222222_256x240.png)`
+
+Note: It is also possible to load only the js needed for the datepicker widget by using the js files that are downloaded from Themeroller.
+
+## Advanced configuration
+
+Add any additional datepicker options as defined in the ["Datepicker"](http://docs.jquery.com/UI/Datepicker) docs.
+
+Example: add option for displaying week number and displaying a drop-down of months:
+
+```javascript
+$(document).ready(function(){
+  var datepicker_widgets = $('input.ui-date-picker');
+
+  datepicker_widgets.datepicker( 'option', 'showWeek', true);
+	datepicker_widgets.datepicker( 'option', 'changeMonth', true );
+});
+```
+
+## ActiveAdmin integration
+
+In the Gemfile add this gem after _ActiveAdmin_ (`gem 'active_admin'`) to make sure it loads after and overrides/extends ActiveAdmin appropriately. 
+
+```text
+gem 'active_admin'
+gem 'datepicker_rails3x'
+```
+
+Note: To configure css and js files with ActiveAdmin you can use the config DSL in the ActiveAdmin initializer.
