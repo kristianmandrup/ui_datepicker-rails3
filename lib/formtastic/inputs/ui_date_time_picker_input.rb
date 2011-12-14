@@ -1,4 +1,3 @@
-# FormtasticDatepickerInputs
 module Formtastic::Inputs
   class UiDateTimePickerInput < Formtastic::Inputs::DatePickerInput
 

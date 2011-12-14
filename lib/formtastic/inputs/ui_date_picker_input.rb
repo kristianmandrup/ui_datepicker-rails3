@@ -1,3 +1,5 @@
+require 'formtastic/inputs/ui_date_picker_input'
+
 module Formtastic::Inputs
   class UiDatePickerInput < Formtastic::Inputs::StringInput
     def to_html
