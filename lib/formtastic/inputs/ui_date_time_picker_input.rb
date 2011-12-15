@@ -1,5 +1,5 @@
 module Formtastic::Inputs
-  class UiDateTimePickerInput < Formtastic::Inputs::DatePickerInput
+  class UiDateTimePickerInput < UiDatePickerInput
 
     def format
       input_options[:format] || '%d %b %Y %H:%M'

@@ -1,4 +1,5 @@
 require 'base_helper'
+require 'rails'
 
 describe UiDatePickerRails3 do
   describe 'activate' do

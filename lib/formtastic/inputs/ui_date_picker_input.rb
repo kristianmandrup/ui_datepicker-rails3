@@ -23,7 +23,7 @@ module Formtastic::Inputs
 
     def input_html_options
       new_class = [super[:class], css_class].compact.join(" ")
-      super.update(:class => new_class, :value => localized value)
+      super.update(:class => new_class, :value => localized(value))
     end
     
     def localized value
