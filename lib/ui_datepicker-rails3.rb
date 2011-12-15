@@ -1,5 +1,4 @@
 require 'date_util/localize'
-require 'rails/railtie'
 
 module UiDatePickerRails3
   def self.activate *names
@@ -30,7 +29,7 @@ module UiDatePickerRails3
   end
   
   def self.ui_theme theme
-    "ui/#{theme}/jquery-ui-theme" }
+    "ui/#{theme}/jquery-ui-theme"
   end
   
   def self.ui_localizers *country_codes

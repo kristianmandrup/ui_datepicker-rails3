@@ -1,4 +1,4 @@
 .bundle
-Gemfile.lock
+# Gemfile.lock
 .DS_Store
 */.DS_Store
