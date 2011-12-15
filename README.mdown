@@ -150,6 +150,15 @@ Then make sure a reference to the locale file is added in the manifest file.
 
 `//= require 'i18n/jquery.ui.datepicker-sv.js'` to your js manifest file. 
 
+You can also use the included datepicker locale files as a base (see vendor/assets of this gem).
+This gem includes a helper method `#ui_localizers` that can be used like this (fx in your Rails layout file or similar):
+
+```ruby
+<%= javascript_include_tag UiDatePickerRails3.ui_localizers :ar, :ca, :da %>
+```
+
+It will generate strings of the form "ui/i18n/jquery.ui.datepicker-#{country_code}"
+
 ## Styling (optional)
 
 Style the datepicker by adding a `datepicker.css` file to your css assets.
@@ -157,6 +166,12 @@ Style the datepicker by adding a `datepicker.css` file to your css assets.
 You can use the *Themeroller* (http://jqueryui.com/themeroller/) to define and download an appropriate css file and the pictures needed. Add the downloaded Themeroller css file to the css assets and add the Themeroller images to the image assets. Edit the datepicker css and change all image references by removing all the "images/" prefixes e.g from `url(images/ui-icons_222222_256x240.png)` to `url(ui-icons_222222_256x240.png)`
 
 Note: It is also possible to load only the js needed for the datepicker widget by using the js files that are downloaded from Themeroller.
+
+A 'smoothness' theme is included with this gem. Simply do:
+
+```ruby
+<%= stylesheet_link_tag UiDatePickerRails3.ui_theme :smoothness %>
+```
 
 ## Advanced configuration
 
