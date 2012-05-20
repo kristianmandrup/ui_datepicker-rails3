@@ -110,7 +110,7 @@ Activate datepicker on all matching input elements in one of your javascript (or
 ```javascript
 $(document).ready(function(){
   $('input.ui-date-picker').datepicker();
-  $('input.ui-datetime-picker').datepicker();
+  $('input.ui-datetime-picker').datetimepicker();
 });
 ```
 
@@ -119,7 +119,7 @@ The same in coffescript:
 ```coffeescript
 $->
   $('input.ui-date-picker').datepicker
-  $('input.ui-datetime-picker').datepicker
+  $('input.ui-datetime-picker').datetimepicker
 ```
 
 ## Localization (optional)
