@@ -13,10 +13,10 @@ group :development, :test do
 
   # for Rails 3.1+
   gem 'activeadmin',  ">= 0.3.4", :git => 'https://github.com/gregbell/active_admin.git'
-  gem 'meta_search', '>= 1.1.0.pre' 
-  gem 'sass-rails',  '~> 3.1.0.rc'
+  gem 'meta_search', '>= 1.1.0' 
+  gem 'sass-rails',  '>= 3.1.0'
 
-  gem 'rspec-rails',  ">= 2.5"
+  gem 'rspec-rails',        ">= 2.5"
   gem 'rspec_tag_matchers', ">= 1.0.0"
-  gem 'hpricot', ">= 0.8.3"
+  gem 'hpricot',            ">= 0.8.3"
 end
