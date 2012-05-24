@@ -1,4 +1,5 @@
 require 'date_util/localize'
+require 'engine'
 
 module UiDatePickerRails3
   module ClassMethods
