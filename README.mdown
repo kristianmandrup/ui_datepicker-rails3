@@ -167,10 +167,12 @@ You can use the *Themeroller* (http://jqueryui.com/themeroller/) to define and d
 
 Note: It is also possible to load only the js needed for the datepicker widget by using the js files that are downloaded from Themeroller.
 
-A 'smoothness' theme is included with this gem. Simply do:
+A 'smoothness' theme is included with this gem. Simply add to application.css:
 
-```ruby
-<%= stylesheet_link_tag UiDatePickerRails3.ui_theme :smoothness %>
+```css
+/*
+ *= require ui/smoothness/jquery-ui-theme
+*/
 ```
 
 ## Advanced configuration
