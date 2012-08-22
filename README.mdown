@@ -41,11 +41,7 @@ This gem requires Formtastic 2.0. For a version that supports Formtastic < 2.0, 
 
 ### ActiveAdmin
 
-The ActiveAdmin extension should work with ActiveAdmin _0.3.4_ (where Formtastic >= 2.0) 
-
-Note: As of Nov 25, 2011 The `active_admin/gregbell` _master_ branch is compatible with Formtastic 2.x. 
-
-ActiveAdmin _0.3.5+_ will likely support Formtastic 2.x ;)
+The ActiveAdmin extension should work with ActiveAdmin _0.4+_ (Formtastic >= 2.0) 
 
 ## Formtastic (by justinfrench)
 
@@ -91,7 +87,7 @@ The SimpleForm Input class adds `class='ui-date-picker'` to the text input, whic
 ```ruby 
 	<% simple_form_for @person do |f| -%>
     <%= f.input :name %>
-    <%= f.input :born, :as => :date_time_picker %>
+    <%= f.input :born, :as => :ui_date_time_picker %>
 	<% end -%>
 ```
 
