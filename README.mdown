@@ -192,7 +192,7 @@ In the Gemfile add this gem after _ActiveAdmin_ (`gem 'active_admin'`) to make s
 
 ```text
 gem 'active_admin'
-gem 'ui_datepicker_rails3'
+gem 'ui_datepicker-rails3'
 ```
 
 Note: To configure css and js files with ActiveAdmin you can use the config DSL in the ActiveAdmin initializer.
