@@ -78,7 +78,7 @@ The gem adds a couple of new form inputs to SimpleForm that can be used like thi
 ```ruby 
 	<% simple_form_for @person do |f| -%>
 	  <%= f.input :name %>
-	  <%= f.input :born, :as => :date_picker %>
+	  <%= f.input :born, :as => :ui_date_picker %>
 	<% end -%>
 ```
 
