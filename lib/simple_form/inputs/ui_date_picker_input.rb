@@ -14,11 +14,11 @@ module SimpleForm
       end
 
       def date_picker_options(value = nil)
-        {:value => localized(value), :class => css_class}
+        {:value => localized(value)}
       end
 
-      def css_class
-        "ui-date-picker"
+      def input_html_classes
+        super.push("ui-date-picker")
       end
     end
   end
