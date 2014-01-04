@@ -2,8 +2,9 @@
 
 This gem adds support for jQuery UI Date and DateTime picker for Rails 3.x form builders, including:
 
-* Formtastic 2.x
+* Formtastic 2.x+
 * SimpleForm
+* ActiveAdmin 0.4+
 
 Feel free to provide patches/extensions to support other form builders.
 
@@ -37,7 +38,9 @@ In Rails 3.1 when using the asset pipeline, this generator is deprecated, so you
 
 ### Formtastic
 
-This gem requires Formtastic 2.0. For a version that supports Formtastic < 2.0, see [formtastic_datepicker]:(https://github.com/kristianmandrup/formtastic_datepicker)
+This gem requires Formtastic 2.0+. 
+
+_Note: For a version that supports Formtastic < 2.0, see [formtastic_datepicker]:(https://github.com/kristianmandrup/formtastic_datepicker)_
 
 ### ActiveAdmin
 
@@ -48,25 +51,25 @@ The ActiveAdmin extension should work with ActiveAdmin _0.4+_ (Formtastic >= 2.0
 The gem adds a couple of new form inputs to Formtastic that can be used like this: 
 
 ```ruby 
-	<% semantic_form_for @person do |f| -%>
-		<% f.inputs do -%>
-		  <%= f.input :name %>
-		  <%= f.input :born, :as => :ui_date_picker %>
-		<% end -%>
-		<%= f.buttons %>
-	<% end -%>
+<% semantic_form_for @person do |f| -%>
+  <% f.inputs do -%>
+    <%= f.input :name %>
+    <%= f.input :born, :as => :ui_date_picker %>
+  <% end -%>
+  <%= f.buttons %>
+<% end -%>
 ```
 
 The Formtastic Input class adds `class='ui-date-picker'` to the text input, which can the be matched by jQuery and converted to the date picker widget.
 
 ```ruby 
-	<% semantic_form_for @person do |f| -%>
-		<% f.inputs do -%>
-		  <%= f.input :name %>
-		  <%= f.input :born, :as => :ui_date_time_picker %>
-		<% end -%>
-		<%= f.buttons %>
-	<% end -%>
+<% semantic_form_for @person do |f| -%>
+  <% f.inputs do -%>
+    <%= f.input :name %>
+    <%= f.input :born, :as => :ui_date_time_picker %>
+  <% end -%>
+  <%= f.buttons %>
+<% end -%>
 ```
 
 The Formtastic Input class adds `class='ui-datetime-picker'` to the text input, which can the be matched by jQuery and converted to the date-time picker widget.
@@ -76,19 +79,19 @@ The Formtastic Input class adds `class='ui-datetime-picker'` to the text input, 
 The gem adds a couple of new form inputs to SimpleForm that can be used like this: 
 
 ```ruby 
-	<% simple_form_for @person do |f| -%>
-	  <%= f.input :name %>
-	  <%= f.input :born, :as => :ui_date_picker %>
-	<% end -%>
+<% simple_form_for @person do |f| -%>
+  <%= f.input :name %>
+  <%= f.input :born, :as => :ui_date_picker %>
+<% end -%>
 ```
 
 The SimpleForm Input class adds `class='ui-date-picker'` to the text input, which can the be matched by jQuery and converted to the date picker widget.
 
-```ruby 
-	<% simple_form_for @person do |f| -%>
-    <%= f.input :name %>
-    <%= f.input :born, :as => :ui_date_time_picker %>
-	<% end -%>
+```ruby
+<% simple_form_for @person do |f| -%>
+  <%= f.input :name %>
+  <%= f.input :born, :as => :ui_date_time_picker %>
+<% end -%>
 ```
 
 The SimpleForm Input class adds `class='ui-datetime-picker'` to the text input, which can the be matched by jQuery and converted to the date-time picker widget.
@@ -118,6 +121,11 @@ $ ->
   $('input.ui-datetime-picker').datetimepicker()
 ```
 
+You can even include an premade script included as ` ui_datepicker.js` (which executes the above code), or customize the initialization to fit your needs:
+Using the asset pipeline, simply add:
+
+`//= require ui_datepicker`
+
 ## Localization (optional)
 
 To add localization, you can additionally add localization options to the `datepicker()` call.
@@ -144,7 +152,7 @@ Copy the appropriate localization file from ["jQuery-UI i18n"](http://jquery-ui.
 
 Then make sure a reference to the locale file is added in the manifest file.
 
-`//= require 'i18n/jquery.ui.datepicker-sv.js'` to your js manifest file. 
+`//= require i18n/jquery.ui.datepicker-sv` to your js manifest file. 
 
 You can also use the included datepicker locale files as a base (see vendor/assets of this gem).
 This gem includes a helper method `#ui_localizers` that can be used like this (fx in your Rails layout file or similar):
@@ -182,7 +190,7 @@ $(document).ready(function(){
   var datepicker_widgets = $('input.ui-date-picker');
 
   datepicker_widgets.datepicker( 'option', 'showWeek', true);
-	datepicker_widgets.datepicker( 'option', 'changeMonth', true );
+  datepicker_widgets.datepicker( 'option', 'changeMonth', true );
 });
 ```
 
